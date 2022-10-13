@@ -1,0 +1,30 @@
+PODS:
+  - Charts (4.1.0):
+    - Charts/Core (= 4.1.0)
+  - Charts/Core (4.1.0):
+    - SwiftAlgorithms (~> 1.0)
+  - DGCollectionViewLeftAlignFlowLayout (1.0.4)
+  - Kingfisher (7.3.2)
+  - SwiftAlgorithms (1.0.0)
+
+DEPENDENCIES:
+  - Charts
+  - DGCollectionViewLeftAlignFlowLayout
+  - Kingfisher
+
+SPEC REPOS:
+  trunk:
+    - Charts
+    - DGCollectionViewLeftAlignFlowLayout
+    - Kingfisher
+    - SwiftAlgorithms
+
+SPEC CHECKSUMS:
+  Charts: 354f86803d11d9c35de280587fef50d1af063978
+  DGCollectionViewLeftAlignFlowLayout: a0fa58797373ded039cafba8133e79373d048399
+  Kingfisher: 0086ad83719761ba9b2cdaf6ef4d5b4878cbae23
+  SwiftAlgorithms: 38dda4731d19027fdeee1125f973111bf3386b53
+
+PODFILE CHECKSUM: 73a9f9ebe5638a3da7f51263762807796933740d
+
+COCOAPODS: 1.11.3
