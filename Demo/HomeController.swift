@@ -58,16 +58,19 @@ class HomeController: UIViewController, CLLocationManagerDelegate {
         }
         
         // Ask for Authorisation from the User.
-        self.locationManager.requestAlwaysAuthorization()
+        //self.locationManager.requestAlwaysAuthorization()
 
         // For use in foreground
         self.locationManager.requestWhenInUseAuthorization()
 
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            locationManager.startUpdatingLocation()
+        DispatchQueue.main.async {
+            if CLLocationManager.locationServicesEnabled() {
+                self.locationManager.delegate = self
+                self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+                self.locationManager.startUpdatingLocation()
+            }
         }
+        
 
     }
 
@@ -140,7 +143,7 @@ class HomeController: UIViewController, CLLocationManagerDelegate {
         lineChart.xAxis.drawGridLinesEnabled = false
         lineChart.xAxis.drawAxisLineEnabled = false
         lineChart.xAxis.valueFormatter = DefaultAxisValueFormatter(block: {(index, _) in
-            return self.formattedDateFromString(dateString: "\(self.arrChartData[Int(index)].date)", inputFormat: "yyyy-MM-dd hh:mm:ss Z", outputFormat: "EEE") ?? "Mon"
+            return self.formattedDateFromString(dateString: "\(self.arrChartData[Int(index)].date)", inputFormat: "yyyy-MM-dd HH:mm:ss Z", outputFormat: "EEE") ?? "Mon"
         })
         
 //        var yAxisMaxValue = 23532 //get the min and max values from your data
@@ -222,7 +225,7 @@ class HomeController: UIViewController, CLLocationManagerDelegate {
     // MARK: - Fetch Step Count From HealthKit
     func fetchStepsHistory() {
         let now = Date()
-        let startDate = Calendar.current.date(byAdding: .day, value: -7, to: now)!
+        let startDate = Calendar.current.date(byAdding: .day, value: -6, to: now)!
 
         var interval = DateComponents()
         interval.day = 1
@@ -249,10 +252,12 @@ class HomeController: UIViewController, CLLocationManagerDelegate {
                     let steps = sum.doubleValue(for: HKUnit.count())
                     print("Amount of steps: \(steps), date: \(statistics.startDate)")
                     self.arrChartData.append(UserActivity(steps: steps, date: statistics.startDate))
-                    self.currentCount += Int(steps)
+                    self.currentCount = Int(steps)
                 }
             }
-            self.createGraph()
+            DispatchQueue.main.async {
+                self.createGraph()
+            }
         }
         healthStore.execute(query)
     }
