@@ -2,18 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSHealthUpdateUsageDescription</key>
-	<string>Demo want to access health data to check your activities.</string>
-	<key>NSHealthShareUsageDescription</key>
-	<string>Demo want to access health data to check your activities.</string>
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>Description</string>
-
-    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-    <string>Description</string>
-
-    <key>NSLocationAlwaysUsageDescription</key>
-    <string>Description</string>
+	<key>CFBundleIconName</key>
+	<string>AppIcon</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

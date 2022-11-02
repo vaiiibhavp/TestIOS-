@@ -24,7 +24,7 @@ class HomeController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var constraintTblListHeight: NSLayoutConstraint!
     
     // MARK: - Variables
-    var currentCount = 9832
+    var currentCount = 0
     var arrChartData : [UserActivity] = [UserActivity]()
     private let healthStore = HKHealthStore()
     private let stepsQuantityType = HKQuantityType.quantityType(forIdentifier: .stepCount)!
@@ -129,7 +129,9 @@ class HomeController: UIViewController, CLLocationManagerDelegate {
         let data = LineChartData()
         data.append(line1)
         
-        lineChart.backgroundColor = .white
+        DispatchQueue.main.async {
+            self.lineChart.backgroundColor = .white
+        }
         
         lineChart.leftAxis.axisMinimum = 0
         

@@ -6,12 +6,27 @@
 //
 
 import UIKit
+import HealthKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        HKHealthStore().requestAuthorization(toShare: [], read: [HKQuantityType.quantityType(forIdentifier: .stepCount)!]) { (success, error) in
+            DispatchQueue.main.async {
+                if success {
+                    print("Permission accept.")
+                }
+                else {
+                    if error != nil {
+                        print(error ?? "")
+                    }
+                    print("Permission denied.")
+                }
+                
+            }
+        }
         return true
     }
 
